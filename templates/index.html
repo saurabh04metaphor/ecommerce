@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="text-center mt-5">Products</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for product in products %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="{{ product[4] }}" class="card-img-top" alt="{{ product[1] }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product[1] }}</h5>
+                        <p class="card-text">{{ product[3] }}</p>
+                        <p class="card-text">Price: ${{ product[2] }}</p>
+                        <form action="/add_to_cart" method="POST">
+                            <input type="hidden" name="product_id" value="{{ product[0] }}">
+                            <button type="submit" class="btn btn-sm btn-outline-primary">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
